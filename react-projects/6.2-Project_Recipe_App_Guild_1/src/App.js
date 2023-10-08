@@ -17,14 +17,6 @@ function App() {
     currentRecipes.filter((recipe, index) => index !== indexToDelete)
   )
 
-  function onEditRecipe(editedRecipe) {
-    const updatedRecipes = recipes.map((recipe) => {
-      if (recipe.index === editedRecipe.index) {
-        return editedRecipe
-      } else { return recipe }
-    })
-    setRecipes(updatedRecipes)
-  }
 
   // TODO: Add the ability for the <RecipeList /> component to list and delete an existing recipe.
   // TODO: Add the ability for the <RecipeCreate /> component to create new recipes.
@@ -36,7 +28,7 @@ function App() {
       <RecipeList 
       recipes={recipes}
       deleteRecipe={deleteRecipe}
-      onEditRecipe={onEditRecipe}/>
+      />
       <RecipeCreate createRecipe={createRecipe}/>
     </div>
   );
