@@ -1,16 +1,31 @@
-import "./App.css";
-
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [artworks, setArtworks] = useState([]);
+  useEffect(() => {
+    async function loadArtworks() {
+      const response = await fetch("https://api.artic.edu/api/v1/artworks");
+      const artworksFromApi = await response.json();
+      // console.log(artworksFromApi);
+      // console.log(artworksFromApi.data);
+      setArtworks(artworksFromApi);
+      console.log(artworks);
+    }
+    loadArtworks();
+  }, []);
 
-  const element = (
-    <div>
-      <h1>Anything other than <a href="https://www.reddit.com/r/learnpython/comments/fnhja2/why_do_all_programming_languages_start_with_hello/" target="_blank">Hello World!</a></h1>
-      <hr />
-      <h2>small paragraph to put after</h2>
+  return (
+    <div className="App">
+      <h2>Artworks</h2>
+      <ul>
+        {artworks.data.map((artwork) => (
+          <li key="1">
+            <a href={`${artworks.config.iiif_url}/${artwork.image_id}/full/200,/0/default.jpg`}>{artwork.title}</a>
+          </li>
+        ))}
+      </ul>
     </div>
-  )
-  return element;
+  );
 }
 
 export default App;
