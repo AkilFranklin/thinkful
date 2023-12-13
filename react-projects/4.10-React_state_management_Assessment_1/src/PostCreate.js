@@ -16,6 +16,7 @@ function PostCreate({ createPost }) {
       ...formData,
       [target.name]: target.value
     })
+    console.log("")
   }
 
   const handleSubmit = (event) => {
